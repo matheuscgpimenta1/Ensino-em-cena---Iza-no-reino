@@ -683,6 +683,7 @@ export default function App() {
                    <input required type="text" placeholder="Sua palavra mágica..." className="w-full bg-pure-white border-4 border-pure-black rounded-xl px-4 py-3 font-bold text-pure-black placeholder:text-pure-black/40 focus:outline-none focus:ring-4 focus:ring-neon-pink transition-all shadow-[4px_4px_0px_var(--color-pure-black)]" />
                    <textarea required rows={3} placeholder="O que ela faz? (ex: Ela transforma tristeza em alegria...)" className="w-full bg-pure-white border-4 border-pure-black rounded-xl px-4 py-3 font-bold text-pure-black placeholder:text-pure-black/40 focus:outline-none focus:ring-4 focus:ring-neon-pink transition-all shadow-[4px_4px_0px_var(--color-pure-black)] resize-none" />
                    <input required type="email" placeholder="Seu e-mail para contato" className="w-full bg-pure-white border-4 border-pure-black rounded-xl px-4 py-3 font-bold text-pure-black placeholder:text-pure-black/40 focus:outline-none focus:ring-4 focus:ring-neon-pink transition-all shadow-[4px_4px_0px_var(--color-pure-black)]" />
+                    <input required type="tel" placeholder="Seu WhatsApp ou Telefone" className="w-full bg-pure-white border-4 border-pure-black rounded-xl px-4 py-3 font-bold text-pure-black placeholder:text-pure-black/40 focus:outline-none focus:ring-4 focus:ring-neon-pink transition-all shadow-[4px_4px_0px_var(--color-pure-black)]" />
                    <button type="submit" className="w-full bg-vibrant-purple text-pure-white font-black uppercase tracking-wider py-4 rounded-xl border-4 border-pure-black shadow-[6px_6px_0px_var(--color-pure-black)] flex items-center justify-center gap-2 hover:translate-x-1 hover:translate-y-1 hover:shadow-[2px_2px_0px_var(--color-pure-black)] transition-all">
                       <Send className="w-5 h-5" /> Enviar Desafio
                    </button>
@@ -799,25 +800,25 @@ export default function App() {
         initial={{ y: 100 }}
         animate={{ y: 0 }}
         transition={{ type: 'spring', damping: 20, stiffness: 200, delay: 0.5 }}
-        className="fixed bottom-4 left-4 right-4 md:left-auto md:right-auto md:w-auto md:translate-x-[-50%] md:left-1/2 z-50 bg-pure-black border-[4px] border-sun-yellow rounded-2xl md:rounded-full p-3 flex flex-col md:flex-row items-center justify-between shadow-[8px_8px_0px_var(--color-neon-pink)] gap-3"
+        className="fixed bottom-4 left-4 right-4 md:right-auto md:w-auto z-50 bg-pure-black border-[4px] border-sun-yellow rounded-2xl p-3 flex flex-col sm:flex-row items-center gap-4 md:gap-6 shadow-[8px_8px_0px_var(--color-neon-pink)]"
       >
-        <div className="flex md:flex-col items-center md:items-start justify-center w-full md:w-auto gap-2 md:gap-0">
+        <div className="flex flex-row sm:flex-col items-center sm:items-start justify-center w-full sm:w-auto gap-3 sm:gap-0 border-b sm:border-b-0 sm:border-r border-sun-yellow/20 pb-2 sm:pb-0 sm:pr-4">
           <span className="text-pure-white/60 text-[10px] uppercase font-black tracking-widest leading-none">
             Status
           </span>
-          <span className="text-pure-white font-black text-sm md:text-xl skew-title flex items-center gap-1">
+          <span className="text-pure-white font-black text-sm md:text-lg skew-title flex items-center gap-1">
             {isAllCollected ? (
               <span className="text-sun-yellow flex gap-1"><Check className="w-4 h-4 md:w-5 md:h-5"/> Concluído!</span>
             ) : (
-              <span className="text-electric-cyan text-xs md:text-base">Colecione seu Deck!</span>
+              <span className="text-electric-cyan text-xs md:text-sm">Colecione seu Deck!</span>
             )}
           </span>
         </div>
         
-        <div className="flex flex-wrap gap-2 w-full md:w-auto overflow-x-auto no-scrollbar pb-1 md:pb-0 justify-center">
+        <div className="flex flex-wrap gap-2 w-full md:w-auto justify-center sm:justify-start">
           <button 
              onClick={handleShare}
-             className="bg-sun-yellow text-pure-black border-2 border-pure-black rounded-xl md:rounded-full p-2.5 px-4 font-black text-xs uppercase tracking-wider shadow-[3px_3px_0px_var(--color-pure-black)] hover:translate-y-[2px] transition-all flex items-center justify-center gap-2 whitespace-nowrap"
+             className="bg-sun-yellow text-pure-black border-2 border-pure-black rounded-xl p-2 md:p-2.5 px-4 font-black text-[10px] md:text-xs uppercase tracking-wider shadow-[3px_3px_0px_var(--color-pure-black)] hover:translate-y-[2px] transition-all flex items-center justify-center gap-2 whitespace-nowrap"
           >
             <Share2 className="w-4 h-4 shrink-0" />
             <span>Compartilhar</span>
@@ -825,7 +826,7 @@ export default function App() {
           
           <button 
              onClick={() => setShowBookModal(true)}
-             className="bg-vibrant-purple text-pure-white border-2 border-pure-black rounded-xl md:rounded-full p-2.5 px-4 font-black text-xs uppercase tracking-wider shadow-[3px_3px_0px_var(--color-pure-black)] hover:translate-y-[2px] transition-all flex items-center justify-center gap-2 whitespace-nowrap"
+             className="bg-vibrant-purple text-pure-white border-2 border-pure-black rounded-xl p-2 md:p-2.5 px-4 font-black text-[10px] md:text-xs uppercase tracking-wider shadow-[3px_3px_0px_var(--color-pure-black)] hover:translate-y-[2px] transition-all flex items-center justify-center gap-2 whitespace-nowrap"
           >
             <BookOpen className="w-4 h-4 shrink-0" />
             <span>Livro Digital</span>
@@ -834,7 +835,7 @@ export default function App() {
           <div className="relative shrink-0">
             <button 
                onClick={handleSendEnergy}
-               className="bg-electric-cyan overflow-hidden relative border-2 border-pure-black text-pure-black rounded-xl md:rounded-full p-2.5 px-4 font-black text-xs uppercase tracking-wider shadow-[3px_3px_0px_var(--color-pure-black)] hover:translate-y-[2px] transition-all flex items-center justify-center gap-2 whitespace-nowrap"
+               className="bg-electric-cyan overflow-hidden relative border-2 border-pure-black text-pure-black rounded-xl p-2 md:p-2.5 px-4 font-black text-[10px] md:text-xs uppercase tracking-wider shadow-[3px_3px_0px_var(--color-pure-black)] hover:translate-y-[2px] transition-all flex items-center justify-center gap-2 whitespace-nowrap"
             >
               <Zap className={`fill-current w-4 h-4 shrink-0 ${energyCount > 0 ? "text-sun-yellow" : "text-pure-black"}`} /> 
               <span>Energia {energyCount > 0 && `(${energyCount})`}</span>
