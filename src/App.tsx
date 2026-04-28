@@ -36,7 +36,7 @@ const characters: Character[] = [
     power: 'Dar nome a tudo que existe',
     description: 'Governante do Reino Gramaravilha. Sem sua majestade para nomear as coisas, o reino seria um completo vazio.',
     icon: Star,
-    image: '/REIPERFIL.jpg',
+    image: '/reiperfil.jpg',
     color: 'from-electric-cyan to-vibrant-purple',
     quote: '"Se existe no meu reino, eu tenho que dar um nome!"'
   },
@@ -47,7 +47,7 @@ const characters: Character[] = [
     power: 'Transformar e embelezar',
     description: 'Ela possui o dom mágico de mudar as coisas, deixando-as grandes, pequenas, bonitas, feias, brilhantes ou opacas.',
     icon: Sparkles,
-    image: '/RAINHA.jpg',
+    image: '/rainha.jpg',
     color: 'from-sun-yellow to-neon-pink',
     quote: '"Tudo fica melhor com um toque da rainha!"'
   },
@@ -58,7 +58,7 @@ const characters: Character[] = [
     power: 'Mudar as circunstâncias',
     description: 'Está sempre mudando o tempo, o modo e o lugar de todas as coisas que acontecem.',
     icon: Map,
-    image: '/ADVERBIO.jpg',
+    image: '/adverbio.jpg',
     color: 'from-green-500 to-electric-cyan',
     quote: '"Sempre, nunca, talvez... quem sabe?"'
   },
@@ -69,7 +69,7 @@ const characters: Character[] = [
     power: 'Definir e Indefinir',
     description: 'Aquele que sempre vem na frente para apresentar quem está chegando na frase.',
     icon: Feather,
-    image: '/ARTIGO.jpg',
+    image: '/artigo.jpg',
     color: 'from-neon-pink to-sun-yellow',
     quote: '"Eu sou O artigo, não um artigo qualquer!"'
   },
@@ -80,7 +80,7 @@ const characters: Character[] = [
     power: 'Desafiar as regras',
     description: 'Uma figura assustadora e complexa, cheia de regras difíceis de domar e muitas exceções.',
     icon: BookOpen,
-    image: '/MONSTROGRAMATICA.jpg',
+    image: '/monstrogramatica.jpg',
     color: 'from-electric-cyan to-green-500',
     quote: '"Você esqueceu a vírgula antes do mas!"'
   },
@@ -91,7 +91,7 @@ const characters: Character[] = [
     power: 'Guiar a jornada',
     description: 'Conhece cada canto do reino e guia os viajantes por essa linda aventura.',
     icon: User,
-    image: '/NARRADORTH.jpg',
+    image: '/narradorth.jpg',
     color: 'from-sun-yellow to-vibrant-purple',
     quote: '"Era uma vez, em um reino de letras..."'
   }
