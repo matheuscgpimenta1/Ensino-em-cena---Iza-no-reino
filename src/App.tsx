@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Sparkles, BookOpen, User, Star, Feather, Map, Play, Heart, Zap, Check, Share2, Award, CheckCircle2, XCircle, Gift, Send, Download, Focus, Ticket, MapPin, X, Calendar, ChevronLeft, ChevronRight } from 'lucide-react';
 import { playFlipSound, playCollectSound, playJumpSound, playCorrectSound, playWrongSound, playVictorySound } from './lib/audio';
 import { jsPDF } from 'jspdf';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 interface Character {
   id: string;
@@ -947,6 +948,7 @@ export default function App() {
         )}
       </AnimatePresence>
 
+      <SpeedInsights />
     </div>
   );
 }
