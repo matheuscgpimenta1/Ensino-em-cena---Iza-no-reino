@@ -631,11 +631,11 @@ export default function App() {
                <div className="w-full h-full relative">
                  {/* Vídeo desbloqueado */}
                  <video 
-                   src="/corte%20video.mp4" 
+                   src="/cortevideo.mp4" 
                    controls 
                    playsInline
                    className="w-full h-full object-cover"
-                   poster="/iza 3.jpg"
+                   poster="/iza3.jpg"
                  >
                     Seu navegador não suporta o formato de vídeo.
                  </video>
