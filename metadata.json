@@ -1,0 +1,8 @@
+{
+  "name": "Decks Iza no Reino Gramaravilha",
+  "description": "Layout interativo com decks de personagens do espetáculo Iza no Reino Gramaravilha.",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "majorCapabilities": []
+}
