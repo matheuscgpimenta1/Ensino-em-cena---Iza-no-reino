@@ -80,7 +80,7 @@ const characters: Character[] = [
     power: 'Desafiar as regras',
     description: 'Uma figura assustadora e complexa, cheia de regras difíceis de domar e muitas exceções.',
     icon: BookOpen,
-    image: '/MONSTRO GRAMÃ TICA.jpg',
+    image: '/MONSTROGRAMATICA.jpg',
     color: 'from-electric-cyan to-green-500',
     quote: '"Você esqueceu a vírgula antes do mas!"'
   },
@@ -782,7 +782,7 @@ export default function App() {
                      </span>
                    </div>
                    <a 
-                     href="https://wa.me/5531971691011?text=Ol%C3%A1%2C%20gostaria%20de%20comprar%20um%20ingresso%20para%20o%20espet%C3%A1culo%20Iza%20no%20Reino%20Gramaravilha!"
+                     href="https://wa.me/5531991873104?text=Ol%C3%A1%2C%20gostaria%20de%20comprar%20um%20ingresso%20para%20o%20espet%C3%A1culo%20Iza%20no%20Reino%20Gramaravilha!"
                      target="_blank"
                      rel="noopener noreferrer"
                      className="bg-sun-yellow text-pure-black border-2 border-pure-black font-black uppercase tracking-wider px-6 py-3 rounded-xl shadow-[4px_4px_0px_var(--color-pure-black)] hover:bg-electric-cyan hover:translate-x-1 hover:translate-y-1 hover:shadow-[2px_2px_0px_var(--color-pure-black)] transition-all flex items-center justify-center gap-2"
