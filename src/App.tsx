@@ -25,7 +25,7 @@ const characters: Character[] = [
     power: 'Curiosidade e Imaginação',
     description: 'Uma garotinha curiosa que acaba caindo no mundo mágico das palavras.',
     icon: User,
-    image: '/iza 3.jpg',
+    image: '/iza3.jpg',
     color: 'from-neon-pink to-vibrant-purple',
     quote: '"Mas por que tudo tem que ter regra?"'
   },
@@ -36,7 +36,7 @@ const characters: Character[] = [
     power: 'Dar nome a tudo que existe',
     description: 'Governante do Reino Gramaravilha. Sem sua majestade para nomear as coisas, o reino seria um completo vazio.',
     icon: Star,
-    image: '/REI PERFIL.jpg',
+    image: '/REIPERFIL.jpg',
     color: 'from-electric-cyan to-vibrant-purple',
     quote: '"Se existe no meu reino, eu tenho que dar um nome!"'
   },
@@ -91,7 +91,7 @@ const characters: Character[] = [
     power: 'Guiar a jornada',
     description: 'Conhece cada canto do reino e guia os viajantes por essa linda aventura.',
     icon: User,
-    image: '/NARRADOR TH.jpg',
+    image: '/NARRADORTH.jpg',
     color: 'from-sun-yellow to-vibrant-purple',
     quote: '"Era uma vez, em um reino de letras..."'
   }
