@@ -410,10 +410,10 @@ export default function App() {
                     <div className={`h-1/2 w-full bg-gradient-to-b ${char.color} p-6 flex flex-col justify-between relative`}>
                        {char.image && (
                          <div className="absolute inset-0 overflow-hidden border-b-4 border-pure-black">
-                           <img 
-                             src={char.image} 
-                             alt={char.name} 
-                             className="w-full h-full object-cover mix-blend-overlay opacity-80"
+                           <img
+                             src={char.image}
+                             alt={char.name}
+                             className="w-full h-full object-cover opacity-90"
                              referrerPolicy="no-referrer"
                            />
                            <div className="absolute inset-0 bg-gradient-to-t from-pure-black/50 via-transparent to-transparent" />
