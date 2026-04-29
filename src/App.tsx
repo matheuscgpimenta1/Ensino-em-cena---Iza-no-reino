@@ -17,7 +17,14 @@ interface Character {
   quote: string;
 }
 
-const BASE_URL = import.meta.env.BASE_URL;
+import izaImg from '../public/iza3.jpg';
+import reiImg from '../public/reiperfil.jpg';
+import rainhaImg from '../public/rainha.jpg';
+import adverbioImg from '../public/adverbio.jpg';
+import artigoImg from '../public/artigo.jpg';
+import monstroImg from '../public/monstrogramatica.jpg';
+import narradorImg from '../public/narradorth.jpg';
+import videoSrc from '../public/cortevideo.mp4';
 
 const characters: Character[] = [
   {
@@ -27,7 +34,7 @@ const characters: Character[] = [
     power: 'Curiosidade e Imaginação',
     description: 'Uma garotinha curiosa que acaba caindo no mundo mágico das palavras.',
     icon: User,
-    image: `${BASE_URL}iza3.jpg`,
+    image: izaImg,
     color: 'from-neon-pink to-vibrant-purple',
     quote: '"Mas por que tudo tem que ter regra?"'
   },
@@ -38,7 +45,7 @@ const characters: Character[] = [
     power: 'Dar nome a tudo que existe',
     description: 'Governante do Reino Gramaravilha. Sem sua majestade para nomear as coisas, o reino seria um completo vazio.',
     icon: Star,
-    image: `${BASE_URL}reiperfil.jpg`,
+    image: reiImg,
     color: 'from-electric-cyan to-vibrant-purple',
     quote: '"Se existe no meu reino, eu tenho que dar um nome!"'
   },
@@ -49,7 +56,7 @@ const characters: Character[] = [
     power: 'Transformar e embelezar',
     description: 'Ela possui o dom mágico de mudar as coisas, deixando-as grandes, pequenas, bonitas, feias, brilhantes ou opacas.',
     icon: Sparkles,
-    image: `${BASE_URL}rainha.jpg`,
+    image: rainhaImg,
     color: 'from-sun-yellow to-neon-pink',
     quote: '"Tudo fica melhor com um toque da rainha!"'
   },
@@ -60,7 +67,7 @@ const characters: Character[] = [
     power: 'Mudar as circunstâncias',
     description: 'Está sempre mudando o tempo, o modo e o lugar de todas as coisas que acontecem.',
     icon: Map,
-    image: `${BASE_URL}adverbio.jpg`,
+    image: adverbioImg,
     color: 'from-green-500 to-electric-cyan',
     quote: '"Sempre, nunca, talvez... quem sabe?"'
   },
@@ -71,7 +78,7 @@ const characters: Character[] = [
     power: 'Definir e Indefinir',
     description: 'Aquele que sempre vem na frente para apresentar quem está chegando na frase.',
     icon: Feather,
-    image: `${BASE_URL}artigo.jpg`,
+    image: artigoImg,
     color: 'from-neon-pink to-sun-yellow',
     quote: '"Eu sou O artigo, não um artigo qualquer!"'
   },
@@ -82,7 +89,7 @@ const characters: Character[] = [
     power: 'Desafiar as regras',
     description: 'Uma figura assustadora e complexa, cheia de regras difíceis de domar e muitas exceções.',
     icon: BookOpen,
-    image: `${BASE_URL}monstrogramatica.jpg`,
+    image: monstroImg,
     color: 'from-electric-cyan to-green-500',
     quote: '"Você esqueceu a vírgula antes do mas!"'
   },
@@ -93,7 +100,7 @@ const characters: Character[] = [
     power: 'Guiar a jornada',
     description: 'Conhece cada canto do reino e guia os viajantes por essa linda aventura.',
     icon: User,
-    image: `${BASE_URL}narradorth.jpg`,
+    image: narradorImg,
     color: 'from-sun-yellow to-vibrant-purple',
     quote: '"Era uma vez, em um reino de letras..."'
   }
@@ -633,11 +640,11 @@ export default function App() {
                <div className="w-full h-full relative">
                  {/* Vídeo desbloqueado */}
                  <video
-                   src={`${BASE_URL}cortevideo.mp4`}
+                   src={videoSrc}
                    controls
                    playsInline
                    className="w-full h-full object-cover"
-                   poster={`${BASE_URL}iza3.jpg`}
+                   poster={izaImg}
                  >
                     Seu navegador não suporta o formato de vídeo.
                  </video>
