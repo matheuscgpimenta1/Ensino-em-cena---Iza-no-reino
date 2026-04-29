@@ -421,7 +421,8 @@ export default function App() {
                              src={char.image}
                              alt={char.name}
                              className="w-full h-full object-cover opacity-90"
-                             referrerPolicy="no-referrer"
+                             loading="eager"
+                             decoding="async"
                            />
                            <div className="absolute inset-0 bg-gradient-to-t from-pure-black/50 via-transparent to-transparent" />
                          </div>
