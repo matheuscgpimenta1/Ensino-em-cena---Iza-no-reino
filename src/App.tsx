@@ -5,6 +5,56 @@ import { Sparkles, BookOpen, User, Star, Feather, Map, Play, Heart, Zap, Check, 
 import { playFlipSound, playCollectSound, playJumpSound, playCorrectSound, playWrongSound, playVictorySound } from './lib/audio';
 import { jsPDF } from 'jspdf';
 
+import { collection, addDoc } from 'firebase/firestore';
+import { db, auth } from './firebase';
+
+enum OperationType {
+  CREATE = 'create',
+  UPDATE = 'update',
+  DELETE = 'delete',
+  LIST = 'list',
+  GET = 'get',
+  WRITE = 'write',
+}
+
+interface FirestoreErrorInfo {
+  error: string;
+  operationType: OperationType;
+  path: string | null;
+  authInfo: {
+    userId?: string | null;
+    email?: string | null;
+    emailVerified?: boolean | null;
+    isAnonymous?: boolean | null;
+    tenantId?: string | null;
+    providerInfo?: {
+      providerId?: string | null;
+      email?: string | null;
+    }[];
+  }
+}
+
+function handleFirestoreError(error: unknown, operationType: OperationType, path: string | null) {
+  const errInfo: FirestoreErrorInfo = {
+    error: error instanceof Error ? error.message : String(error),
+    authInfo: {
+      userId: auth.currentUser?.uid,
+      email: auth.currentUser?.email,
+      emailVerified: auth.currentUser?.emailVerified,
+      isAnonymous: auth.currentUser?.isAnonymous,
+      tenantId: auth.currentUser?.tenantId,
+      providerInfo: auth.currentUser?.providerData?.map(provider => ({
+        providerId: provider.providerId,
+        email: provider.email,
+      })) || []
+    },
+    operationType,
+    path
+  };
+  console.error('Firestore Error: ', JSON.stringify(errInfo));
+  throw new Error(JSON.stringify(errInfo));
+}
+
 interface Character {
   id: string;
   name: string;
@@ -137,6 +187,12 @@ export default function App() {
   const [particles, setParticles] = useState<{ id: number, x: number }[]>([]);
   const [challengeSubmitted, setChallengeSubmitted] = useState(false);
   
+  const [challengeWord, setChallengeWord] = useState('');
+  const [challengeDescription, setChallengeDescription] = useState('');
+  const [challengeEmail, setChallengeEmail] = useState('');
+  const [challengePhone, setChallengePhone] = useState('');
+  const [isSubmittingChallenge, setIsSubmittingChallenge] = useState(false);
+
   const [showBookModal, setShowBookModal] = useState(false);
   const [bookPage, setBookPage] = useState(0);
 
@@ -678,14 +734,36 @@ export default function App() {
                    key="form"
                    exit={{ opacity: 0, scale: 0.9 }}
                    className="space-y-4 max-w-lg"
-                   onSubmit={(e) => { e.preventDefault(); playVictorySound(); setChallengeSubmitted(true); }}
+                   onSubmit={async (e) => { 
+                     e.preventDefault(); 
+                     setIsSubmittingChallenge(true);
+                     try {
+                        await addDoc(collection(db, "challengeResponses"), {
+                          word: challengeWord,
+                          description: challengeDescription,
+                          email: challengeEmail,
+                          phone: challengePhone,
+                          createdAt: new Date().toISOString()
+                        });
+                        playVictorySound(); 
+                        setChallengeSubmitted(true); 
+                     } catch (error) {
+                        try {
+                           handleFirestoreError(error, OperationType.CREATE, "challengeResponses");
+                        } catch (handledError) {
+                           alert("Houve um erro ao enviar seu desafio. O sistema de segurança bloqueou o envio. Se o problema persistir, fale conosco.");
+                        }
+                     } finally {
+                        setIsSubmittingChallenge(false);
+                     }
+                   }}
                  >
-                   <input required type="text" placeholder="Sua palavra mágica..." className="w-full bg-pure-white border-4 border-pure-black rounded-xl px-4 py-3 font-bold text-pure-black placeholder:text-pure-black/40 focus:outline-none focus:ring-4 focus:ring-neon-pink transition-all shadow-[4px_4px_0px_var(--color-pure-black)]" />
-                   <textarea required rows={3} placeholder="O que ela faz? (ex: Ela transforma tristeza em alegria...)" className="w-full bg-pure-white border-4 border-pure-black rounded-xl px-4 py-3 font-bold text-pure-black placeholder:text-pure-black/40 focus:outline-none focus:ring-4 focus:ring-neon-pink transition-all shadow-[4px_4px_0px_var(--color-pure-black)] resize-none" />
-                   <input required type="email" placeholder="Seu e-mail para contato" className="w-full bg-pure-white border-4 border-pure-black rounded-xl px-4 py-3 font-bold text-pure-black placeholder:text-pure-black/40 focus:outline-none focus:ring-4 focus:ring-neon-pink transition-all shadow-[4px_4px_0px_var(--color-pure-black)]" />
-                    <input required type="tel" placeholder="Seu WhatsApp ou Telefone" className="w-full bg-pure-white border-4 border-pure-black rounded-xl px-4 py-3 font-bold text-pure-black placeholder:text-pure-black/40 focus:outline-none focus:ring-4 focus:ring-neon-pink transition-all shadow-[4px_4px_0px_var(--color-pure-black)]" />
-                   <button type="submit" className="w-full bg-vibrant-purple text-pure-white font-black uppercase tracking-wider py-4 rounded-xl border-4 border-pure-black shadow-[6px_6px_0px_var(--color-pure-black)] flex items-center justify-center gap-2 hover:translate-x-1 hover:translate-y-1 hover:shadow-[2px_2px_0px_var(--color-pure-black)] transition-all">
-                      <Send className="w-5 h-5" /> Enviar Desafio
+                   <input required value={challengeWord} onChange={e => setChallengeWord(e.target.value)} type="text" placeholder="Sua palavra mágica..." className="w-full bg-pure-white border-4 border-pure-black rounded-xl px-4 py-3 font-bold text-pure-black placeholder:text-pure-black/40 focus:outline-none focus:ring-4 focus:ring-neon-pink transition-all shadow-[4px_4px_0px_var(--color-pure-black)]" disabled={isSubmittingChallenge} />
+                   <textarea required value={challengeDescription} onChange={e => setChallengeDescription(e.target.value)} rows={3} placeholder="O que ela faz? (ex: Ela transforma tristeza em alegria...)" className="w-full bg-pure-white border-4 border-pure-black rounded-xl px-4 py-3 font-bold text-pure-black placeholder:text-pure-black/40 focus:outline-none focus:ring-4 focus:ring-neon-pink transition-all shadow-[4px_4px_0px_var(--color-pure-black)] resize-none" disabled={isSubmittingChallenge} />
+                   <input required value={challengeEmail} onChange={e => setChallengeEmail(e.target.value)} type="email" placeholder="Seu e-mail para contato" className="w-full bg-pure-white border-4 border-pure-black rounded-xl px-4 py-3 font-bold text-pure-black placeholder:text-pure-black/40 focus:outline-none focus:ring-4 focus:ring-neon-pink transition-all shadow-[4px_4px_0px_var(--color-pure-black)]" disabled={isSubmittingChallenge} />
+                    <input required value={challengePhone} onChange={e => setChallengePhone(e.target.value)} type="tel" placeholder="Seu WhatsApp ou Telefone" className="w-full bg-pure-white border-4 border-pure-black rounded-xl px-4 py-3 font-bold text-pure-black placeholder:text-pure-black/40 focus:outline-none focus:ring-4 focus:ring-neon-pink transition-all shadow-[4px_4px_0px_var(--color-pure-black)]" disabled={isSubmittingChallenge} />
+                   <button type="submit" disabled={isSubmittingChallenge} className="w-full disabled:opacity-50 bg-vibrant-purple text-pure-white font-black uppercase tracking-wider py-4 rounded-xl border-4 border-pure-black shadow-[6px_6px_0px_var(--color-pure-black)] flex items-center justify-center gap-2 hover:translate-x-1 hover:translate-y-1 hover:shadow-[2px_2px_0px_var(--color-pure-black)] transition-all">
+                      <Send className="w-5 h-5" /> {isSubmittingChallenge ? 'Enviando...' : 'Enviar Desafio'}
                    </button>
                  </motion.form>
                ) : (

@@ -1,0 +1,23 @@
+{
+  "entities": {
+    "ChallengeResponse": {
+      "title": "Challenge Response",
+      "description": "User submissions for the magic word challenge.",
+      "type": "object",
+      "properties": {
+        "word": { "type": "string", "description": "The magic word" },
+        "description": { "type": "string", "description": "What the word does" },
+        "email": { "type": "string", "description": "User email" },
+        "phone": { "type": "string", "description": "User phone number" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["word", "description", "email", "phone", "createdAt"]
+    }
+  },
+  "firestore": {
+    "challengeResponses/{responseId}": {
+      "schema": { "$ref": "#/entities/ChallengeResponse" },
+      "description": "Store all challenge responses."
+    }
+  }
+}
